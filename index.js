@@ -21,7 +21,6 @@ function applyCSS(element) {
     }
   });
 
-  // Append generated styles without removing existing inline styles
   element.style.cssText += compiledStyle;
 }
 

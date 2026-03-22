@@ -1,52 +1,52 @@
 # MasalaCSS
 
-MasalaCSS is a lightweight, utility-first CSS engine inspired by Tailwind-style classes.
-It applies styles directly from JavaScript by reading class names like `masala-bg-red` and mapping them to CSS rules.
+MasalaCSS is a lightweight JavaScript utility CSS engine.
+It reads classes like `masala-bg-red` from your HTML and applies style rules from `cssobjects.js`.
 
-## Why this project
+## Recommended way to use MasalaCSS
 
-This project is a learning-first custom CSS framework that helps you:
+Your approach is correct and recommended:
 
-- understand how utility CSS works under the hood
-- build your own class-to-style mapping system
-- experiment with fast prototyping without external dependencies
+1. Clone this repository.
+2. Open the cloned folder in VS Code.
+3. Write your project HTML inside this same folder.
+4. Keep `index.js` and `cssobjects.js` in that folder.
+5. Run with a local server.
 
-## Current setup
+This method avoids path/import issues and ensures utility classes apply correctly.
 
-Project structure:
+## Quick start
 
-- `index.html` - demo page using utility classes
-- `index.js` - runtime engine that scans classes and applies styles
-- `cssobjects.js` - utility class map (class name -> CSS declaration)
+```bash
+git clone <your-repo-url>
+cd masalaCSS
+```
 
-## How it works
-
-1. `index.js` imports the utility object from `cssobjects.js`.
-2. It scans all DOM nodes.
-3. It picks class names that start with the prefix `masala-`.
-4. For every matching class, it fetches the CSS declaration from `masalaCSS`.
-5. It appends those declarations to the element's inline style.
-
-## Run locally
-
-Since this project uses ES modules (`import`/`export`), run it with a local server.
-
-### Option 1: VS Code Live Server
-
-- Install the Live Server extension.
-- Right click `index.html` and choose **Open with Live Server**.
-
-### Option 2: Python simple server
-
-From the project folder:
+Run a local server:
 
 ```bash
 python -m http.server 5500
 ```
 
-Then open:
+Open in browser:
 
-- `http://localhost:5500`
+```text
+http://localhost:5500
+```
+
+## Project files
+
+- `index.html` - your demo/app markup
+- `index.js` - runtime engine that scans DOM classes and applies styles
+- `cssobjects.js` - utility class map (`className -> CSS declaration`)
+
+## Required script in HTML
+
+Make sure your HTML includes this:
+
+```html
+<script type="module" src="index.js"></script>
+```
 
 ## Example usage
 
@@ -64,17 +64,11 @@ In `cssobjects.js`:
 "masala-p-20": "padding: 20px;",
 ```
 
-## Naming convention
+## Why clone-first works best
 
-- Prefix: `masala-`
-- Pattern: `masala-{category}-{value}`
-
-Examples:
-
-- `masala-text-blue`
-- `masala-p-10`
-- `masala-rounded`
-- `masala-flex`
+MasalaCSS uses ES modules (`import` and `export`).
+So `index.js` must be able to import `cssobjects.js` from the same project path.
+If files are moved around, opened directly with `file:///`, or used from another random folder, styles may not apply.
 
 ## Utility class reference
 
@@ -146,38 +140,12 @@ The table below lists every class currently available in `cssobjects.js`.
 | `masala-pointer`         | `cursor: pointer;`                       |
 | `masala-opacity-50`      | `opacity: 0.5;`                          |
 
-## Features implemented
+## Troubleshooting
 
-- Colors (background + text)
-- Typography (size, weight, alignment)
-- Spacing (padding + margin)
-- Borders and border radius
-- Basic layout and flex helpers
-- Width/height helpers
-- Position utilities
-- Small extras (shadow, transition, pointer, opacity)
+If CSS is not applying:
 
-## Known limitations
-
-- Styles are currently applied once on initial load.
-- Dynamically added elements are not auto-processed.
-- Utility values are currently static object keys.
-
-## Next improvements
-
-- Add dynamic utilities like:
-  - `masala-p-14`
-  - `masala-mt-24`
-  - `masala-text-22`
-- Add responsive prefixes (for example `sm:`, `md:` behavior)
-- Add pseudo-class support like hover/focus utilities
-- Add a tiny dev watcher/build step for production optimization
-
-## Contributing
-
-Contributions are welcome.
-Open an issue or submit a pull request with improvements to utility parsing, class naming, or runtime behavior.
-
-## License
-
-MIT (you can change this to your preferred license)
+1. Confirm class names start with `masala-`.
+2. Confirm the class exists in `cssobjects.js`.
+3. Confirm your HTML has `<script type="module" src="index.js"></script>`.
+4. Run the page through a local server, not direct file open.
+5. Check browser console for import warnings.
