@@ -1,0 +1,23 @@
+{
+  "name": "masalacss",
+  "version": "1.0.0",
+  "description": "MasalaCSS is a lightweight JavaScript utility CSS engine.\r It reads classes like `masala-bg-red` from your HTML and applies style rules from `cssobjects.js`.",
+  "keywords": [
+    "masalaCSS"
+  ],
+  "homepage": "https://github.com/DhruvSood05/masala-css#readme",
+  "bugs": {
+    "url": "https://github.com/DhruvSood05/masala-css/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DhruvSood05/masala-css.git"
+  },
+  "license": "ISC",
+  "author": "Dhruv Sood",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
